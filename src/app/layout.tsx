@@ -1,10 +1,13 @@
-import { Footer } from '@/components/Footer/Footer'
-import { Header } from '@/components/Header/Header'
-import '@/styles/globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import { ReactNode } from 'react'
 
+import { Inter } from 'next/font/google'
+
+import type { Metadata } from 'next'
+
+import { Footer } from '@/components/Footer/Footer'
+import { Header } from '@/components/Header/Header'
+
+import '@/styles/globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -18,10 +21,10 @@ type RootLayoutProps = {
 
 const RootLayout = ({
   children,
-}: RootLayoutProps) =>{
+}: RootLayoutProps) => {
   return (
     <html lang="en">
-      <body className={"flex flex-col min-h-screen"}>
+      <body className={'flex flex-col min-h-screen'}>
         <Header/>
         <main className="flex flex-grow flex-col items-center justify-between p-24">{children}</main>
         <Footer />
