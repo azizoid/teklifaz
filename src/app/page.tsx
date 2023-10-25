@@ -1,25 +1,14 @@
 'use client'
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import axios from 'axios';
 
-import { Button } from '@/components/Button/Button';
+import { Repo, RepositoryProps } from '@/components/Repo/Repo';
 import data from '@/data/dump.json';
 
-type BaseGitRepoProps = {
+interface GithubResponseProps {
   name: string;
   description: string;
-  username: string;
-}
-
-interface RepositoryProps extends BaseGitRepoProps{
-  stars: number;
-  fullname:string;
-  url: string;
-  subscribersCount:number
-}
-
-interface GithubResponseProps extends BaseGitRepoProps{
   stargazers_count: number;
   full_name:string;
   svn_url: string;
@@ -33,14 +22,18 @@ const fetchRepositoryStars = async (
 const Home = () => {
   const [repos, setRepos] = useState<RepositoryProps[]>([])
 
+  const repoGroups = useMemo(() => [
+    repos.slice(0, 3),
+    repos.slice(3),
+  ], [repos])
+
   useEffect(() => {
     const fetchData = (async () => {
       try {
         const responses = await Promise.all(data.map(item => fetchRepositoryStars(item.username, item.repo)))
 
-        const allRepos: RepositoryProps[] = responses.map(({name, stargazers_count, full_name, username, svn_url, description, subscribers_count}) => ({
+        const allRepos: RepositoryProps[] = responses.map(({name, stargazers_count, full_name, svn_url, description, subscribers_count}) => ({
           name,
-          username,
           description,
           stars: stargazers_count,
           fullname: full_name,
@@ -60,19 +53,23 @@ const Home = () => {
   }, [])
 
   return (
-    <div className="grid grid-cols-3 gap-4">
-      {repos.map(({name, fullname, description, url, stars, subscribersCount}) => (
-        <div className="p-4 bg-white rounded shadow-lg" key={name}>
-            <p className="text-gray-600 font-bold">{description}</p>
-            <p className="text-blue-500 underline mb-2"><a href={url} target="_blank">{fullname}</a></p>
-            <div className="flex justify-start gap-1">
-              <Button>{stars} ulduz</Button>
-              <Button>dəstək ol ({subscribersCount})</Button>
-            </div>
-          </div>
-        )
-      )}
-    </div>
+    <>
+      {repoGroups.map((group, index) => (
+        <div className={`w-full grid grid-cols-${index === 0 ? 3 : 4} gap-4`} key={index}>
+          {group.map(({ name, fullname, description, url, stars, subscribersCount }) => (
+            <Repo
+              key={name}
+              stars={stars}
+              fullname={fullname}
+              url={url}
+              subscribersCount={subscribersCount}
+              name={name}
+              description={description}
+            />
+          ))}
+        </div>
+      ))}
+    </>
   )
 }
 
