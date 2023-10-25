@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 
+import { Button } from '@/components/Button/Button';
 import data from '@/data/dump.json';
 
 type BaseGitRepoProps = {
@@ -62,9 +63,12 @@ const Home = () => {
     <div className="grid grid-cols-3 gap-4">
       {repos.map(({name, fullname, description, url, stars, subscribersCount}) => (
         <div className="p-4 bg-white rounded shadow-lg" key={name}>
-            <p className="font-bold mb-2">{description}</p>
+            <p className="text-gray-600 font-bold">{description}</p>
             <p className="text-blue-500 underline mb-2"><a href={url} target="_blank">{fullname}</a></p>
-            <p className="text-lg">{stars} ulduz | dəstək ol{subscribersCount}</p>
+            <div className="flex justify-start gap-1">
+              <Button>{stars} ulduz</Button>
+              <Button>dəstək ol ({subscribersCount})</Button>
+            </div>
           </div>
         )
       )}
