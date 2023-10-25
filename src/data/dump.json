@@ -1,10 +1,14 @@
-[{
-  "name": "Aziz Shahhuseynov",
-  "github": "azizoid",
-  "url": "www.nam.az"
-},
-{
-  "name": "Aziz Shahhuseynov",
-  "github": "azizoid",
-  "url": "www.quran.az"
-}]
+[
+  {
+    "name": "Aziz Shahhuseynov",
+    "username": "azizoid",
+    "repo": "quran.az",
+    "url": "www.nam.az"
+  },
+  {
+    "name": "Aziz Shahhuseynov",
+    "username": "azizoid",
+    "repo": "nam.az",
+    "url": "www.quran.az"
+  }
+]
