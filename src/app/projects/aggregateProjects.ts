@@ -13,10 +13,9 @@ const aggregateProjects = async () => {
     if (fs.existsSync(infoFile)) {
       const data = JSON.parse(fs.readFileSync(infoFile, 'utf-8'));
 
-      // Flatten the structure by iterating through each repository
       for (const repository of data.repositories) {
         allProjects.push({
-          developer: data.developer, 
+          developer: data.developer,
           provider: repository.provider,
           name: repository.name,
           tags: repository.tags,
@@ -31,4 +30,4 @@ const aggregateProjects = async () => {
   console.log('All projects have been aggregated into all_projects.json as a flat array');
 };
 
-aggregateProjects().catch((err) => console.error(err));
+export default aggregateProjects().catch((err) => console.error(err));

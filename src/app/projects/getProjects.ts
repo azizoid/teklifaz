@@ -1,18 +1,15 @@
 import path from 'path';
 import fs from 'fs';
 
-type Project = {
+export type ProjectProps = {
   developer: string;
-  repositories: Array<{
-    provider: string;
-    owner: string;
-    name: string;
-    tags: string[];
-    stars: number;
-  }>;
+  provider: string;
+  name: string;
+  tags: string[];
+  stars: number;
 };
 
-export const getProjects = async (): Promise<Project[]> => {
+export const getProjects = async (): Promise<ProjectProps[]> => {
   const dataPath = path.join(process.cwd(), 'data', 'all_projects.json');
   const fileContents = fs.readFileSync(dataPath, 'utf-8');
   return JSON.parse(fileContents);
