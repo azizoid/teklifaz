@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const Header = () => (
-  <header className="bg-blue-500 text-white shadow-md">
+  <header className="bg-teklif-700 text-white border-gray-300 px-3 py-1">
     <nav className="container mx-auto p-4 flex justify-between items-center">
       <h1 className="text-2xl font-bold"><Link href={'/'}>Teklif.az</Link></h1>
       <ul className="flex space-x-6">
