@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Card } from 'flowbite-react';
 import { ProjectProps } from '@/app/projects/getProjects';
+import Link from 'next/link';
 
 interface Repository {
   provider: string;
@@ -18,21 +19,23 @@ interface RepoCardProps {
 export const RepoCard: React.FC<RepoCardProps> = ({ project, type }) => {
   return (
     <Card className={`card-${type}`}>
-      <h5 className={`text-xl font-bold ${type === 'minimal' ? 'text-base' : 'text-xl'}`}>
-        {project.name}
-      </h5>
+      <Link href={`/projects/${project.developer}/${project.name}`}>
+        <h5 className={`text-xl font-bold ${type === 'minimal' ? 'text-base' : 'text-xl'}`}>
+          {project.name}
+        </h5>
+      </Link>
 
-      <p className="text-sm font-light">⭐ {project.stars}</p>
+      <p className="text-sm font-light">⭐ {project.stars || -1} stars</p>
 
       {(type === 'top' || type === 'mid') && (
         <p className="text-sm">Owner: {project.developer}</p>
       )}
 
-      {type === 'top' && project.tags.length > 0 && (
+      {/* {type === 'top' && project.tags.length > 0 && (
         <div className="mt-2">
           <p className="text-xs font-light">Tags: {project.tags.join(', ')}</p>
         </div>
-      )}
+      )} */}
 
       {type === 'top' && (
         <p className="mt-3 text-sm text-gray-500">
