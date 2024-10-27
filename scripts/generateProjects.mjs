@@ -16,11 +16,10 @@ const aggregateProjects = async () => {
       // Flatten the structure by iterating through each repository
       for (const repository of data.repositories) {
         allProjects.push({
+          id: `${data.developer}/${repository.name}`,
           developer: data.developer, 
           provider: repository.provider,
-          name: repository.name,
-          tags: repository.tags,
-          stars: repository.stars
+          name: repository.name
         });
       }
     }
