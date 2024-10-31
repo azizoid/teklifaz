@@ -6,20 +6,44 @@ const Home = () => (
       built by developers in our community.
     </p>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div className="bg-white shadow-md rounded-md p-4">
-        <h3 className="text-xl font-bold text-blue-600">Project 1</h3>
-        <p className="text-gray-700">A short description of the project.</p>
+    <section className="container mx-auto py-16 px-4 lg:px-0 grid grid-cols-1 lg:grid-cols-3 gap-8 bg-white">
+
+      <div className="lg:col-span-1 flex flex-col justify-center">
+        <h1 className="text-4xl font-bold text-gray-800 mb-4">
+          IT & Cloud <br /> Consulting Firm
+        </h1>
+        <p className="text-lg text-gray-600 max-w-md">
+          We are an IT consulting firm for SMBs and Enterprises in cybersecurity, cloud, and e-commerce industries.
+        </p>
       </div>
-      <div className="bg-white shadow-md rounded-md p-4">
-        <h3 className="text-xl font-bold text-blue-600">Project 2</h3>
-        <p className="text-gray-700">A short description of the project.</p>
+
+
+      <div className="lg:col-span-2">
+        <div className="space-y-8">
+          <div className="flex items-start space-x-4">
+            <div>
+              <h2 className="text-lg font-semibold text-gray-800">Software Consulting</h2>
+              <p className="text-gray-600">Innovative software development tailored to meet client needs.</p>
+            </div>
+          </div>
+          <div className="border-t border-gray-200"></div>
+          <div className="flex items-start space-x-4">
+            <div>
+              <h2 className="text-lg font-semibold text-gray-800">IT Staff Augmentation</h2>
+              <p className="text-gray-600">We build top-tier IT teams with expertise across industries.</p>
+            </div>
+          </div>
+          <div className="border-t border-gray-200"></div>
+          <div className="flex items-start space-x-4">
+            <div>
+              <h2 className="text-lg font-semibold text-gray-800">SOC as a Service</h2>
+              <p className="text-gray-600">Seamlessly integrating with your IT infrastructure for security needs.</p>
+            </div>
+          </div>
+
+        </div>
       </div>
-      <div className="bg-white shadow-md rounded-md p-4">
-        <h3 className="text-xl font-bold text-blue-600">Project 3</h3>
-        <p className="text-gray-700">A short description of the project.</p>
-      </div>
-    </div>
+    </section>
   </>
 );
 

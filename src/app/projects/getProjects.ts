@@ -2,11 +2,10 @@ import path from 'path';
 import fs from 'fs';
 
 export type ProjectProps = {
+  id: string;
   developer: string;
   provider: string;
   name: string;
-  tags: string[];
-  stars: number;
 };
 
 export const getProjects = async (): Promise<ProjectProps[]> => {
