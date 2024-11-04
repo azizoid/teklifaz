@@ -1,13 +1,10 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { ActivityIcon, LinkIcon, StarIcon, UsersIcon } from "lucide-react";
-import { ProjectProps } from "@/app/projects/getProjects";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { RepoCardProps } from "./RepoCard.type";
 
-type TopCardProps = {
-  project: ProjectProps
-}
-export const TopCard = ({ project }: TopCardProps) => (
+export const TopCard = ({ project }: RepoCardProps) => (
   <Card className="flex flex-col justify-between">
     <CardHeader className="w-full flex flex-row gap-4">
       <Avatar>
