@@ -2,6 +2,9 @@ import Link from 'next/link'
 import { CiStar } from "react-icons/ci";
 
 import { getProjects } from "./getProjects";
+import { TopCard } from '@/components/Cards/TopCard';
+import { Card, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { ActivityIcon, LinkIcon, StarIcon, UsersIcon } from 'lucide-react';
 
 export default async function ProjectsPage() {
   const projectsList = await getProjects();
@@ -15,21 +18,7 @@ export default async function ProjectsPage() {
       <div className="grid grid-cols-3 gap-4">
         {
           top3Projects.map((project, index) => (
-            <Link key={index}
-              href={`/projects/${project.developer}/${project.name}`}
-              className="flex flex-col justify-between border border-gray-200 rounded-lg shadow bg-white hover:bg-gray-50"
-            >
-              <div className="flex flex-col justify-start gap-2 p-4">
-                <h5 className="text-xl text-gray-900 dark:text-white">{project.developer}</h5>
-                <h6 className="text-l font-bold tracking-tight text-gray-900 dark:text-white">{project.name}</h6>
-                <p className="font-normal text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-              </div>
-              <div className="mt-auto flex flex-row w-full text-sm text-center border-t">
-                <div className='flex-1 py-4'>Stars 5</div>
-                <div className='flex-1 border-x py-4'>Contributors 3</div>x
-                <div className='flex-1 py-4'>Activity 1</div>
-              </div>
-            </Link>
+            <TopCard key={index} project={project} />
           ))
         }
       </div>
@@ -37,15 +26,26 @@ export default async function ProjectsPage() {
       <div className="grid grid-cols-4 gap-4 mt-8">
         {
           midProjects.map((project, index) => (
-            <Link key={index}
-              href={`/projects/${project.developer}/${project.name}`}
-              className="flex flex-col justify-between border border-gray-200 rounded-lg shadow bg-white hover:bg-gray-50"
-            >
-              <div className="flex flex-col justify-start gap-2 p-4">
-                <h5 className="text-xl text-gray-900 dark:text-white">{project.developer}</h5>
-                <h6 className="text-l font-bold tracking-tight text-gray-900 dark:text-white">{project.name}</h6>
-              </div>
-            </Link>
+            <Card key={index}>
+              <CardHeader>
+                <CardTitle className="flex flex-row justify-between">
+                  {project.developer}
+                  <Link href={`/projects/${project.developer}/${project.name}`}><LinkIcon /></Link>
+                </CardTitle>
+                <h5 className="text-xl text-gray-900 dark:text-white">{project.name}</h5>
+              </CardHeader>
+              <CardFooter className="text-sm border-t p-0">
+                <div className='flex-1 py-4 flex flex-row justify-center items-center gap-2'>
+                  <StarIcon size={12} /> 5
+                </div>
+                <div className='flex-1 border-x py-4 flex flex-row justify-center items-center gap-2'>
+                  <UsersIcon size={12} /> 5
+                </div>
+                <div className='flex-1 py-4 flex flex-row justify-center items-center gap-2'>
+                  <ActivityIcon size={12} /> 5
+                </div>
+              </CardFooter>
+            </Card>
           ))
         }
       </div>
