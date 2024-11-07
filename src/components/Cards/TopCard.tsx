@@ -8,22 +8,22 @@ export const TopCard = ({ project }: RepoCardProps) => (
   <Card>
     <Link
       href={`/projects/${project.developer}/${project.name}`}
-      className="flex flex-col h-full justify-between hover:bg-gray-50"
+      className="flex flex-col h-full justify-between hover:bg-gray-50 group"
     >
-      <CardHeader className="flex w-full flex-row gap-4 pt-0">
-        <Avatar className="w-16 h-16 flex-shrink-0">
+      <CardHeader className="flex flex-row w-full pt-0 gap-4 space-y-0">
+        <Avatar className="w-16 h-16 flex-shrink-0 opacity-20 group-hover:opacity-100 transition-opacity duration-300">
           <AvatarImage
             src="https://avatars.githubusercontent.com/u/47358"
             width={16}
             height={16}
-            className="object-cover rounded-b-xl w-full h-full"
+            className="object-cover rounded-b-lg w-full h-full"
           />
           <AvatarFallback>{project.developer.substring(0, 2)}</AvatarFallback>
         </Avatar>
 
-        <div className="grow">
+        <div className="flex flex-col justify-evenly">
           <CardDescription>{project.developer}</CardDescription>
-          <CardTitle className="text-xl">{project.name}</CardTitle>
+          <CardTitle className="line-clamp-2 text-xl leading-5">{project.name}</CardTitle>
         </div>
       </CardHeader>
 
@@ -34,23 +34,23 @@ export const TopCard = ({ project }: RepoCardProps) => (
       <CardFooter className="text-sm text-center border-t pb-0">
         <div className='grow py-4 flex flex-row justify-evenly'>
           Stars
-          <div className="flex flex-row gap-2 items-center">
+          <span className="flex flex-row gap-2 items-center">
             <StarIcon size={12} /> 5
-          </div>
+          </span>
         </div>
 
         <div className='grow border-x py-4 flex flex-row justify-evenly'>
           Contributors
-          <div className="flex flex-row gap-2 items-center">
+          <span className="flex flex-row gap-2 items-center">
             <UsersIcon size={12} /> 5
-          </div>
+          </span>
         </div>
 
         <div className='grow py-4 flex flex-row justify-evenly'>
           Activity
-          <div className="flex flex-row gap-2 items-center">
+          <span className="flex flex-row gap-2 items-center">
             <ActivityIcon size={12} /> 5
-          </div>
+          </span>
         </div>
       </CardFooter>
     </Link>
