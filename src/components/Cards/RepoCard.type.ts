@@ -1,5 +1,5 @@
-import { ProjectProps } from "@/app/projects/getProjects"
+import { ProjectProps } from "@/app/projects/getProjects";
 
 export type RepoCardProps = {
-  project: ProjectProps
-}
+  project: ProjectProps;
+};

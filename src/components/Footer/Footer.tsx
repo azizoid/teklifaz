@@ -4,4 +4,4 @@ export const Footer = () => (
       <p>&copy; 2024 Teklifaz. All rights reserved.</p>
     </div>
   </footer>
-)
+);

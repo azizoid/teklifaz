@@ -26,15 +26,11 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => (
   <html lang="az">
-    <body
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-    >
+    <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
       <div className="flex flex-col min-h-screen">
         <Header />
 
-        <main className="flex-grow container mx-auto p-6">
-          {children}
-        </main>
+        <main className="flex-grow container mx-auto p-6">{children}</main>
 
         <Footer />
       </div>
@@ -42,4 +38,4 @@ const RootLayout = ({
   </html>
 );
 
-export default RootLayout
+export default RootLayout;

@@ -1,12 +1,6 @@
-import Link from 'next/link'
-import { CiStar } from "react-icons/ci";
-
 import { getProjects } from "./getProjects";
-import { TopCard } from '@/components/Cards/TopCard';
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ActivityIcon, LinkIcon, StarIcon, UsersIcon } from 'lucide-react';
-import { MidCard } from '@/components/Cards/MidCard';
-import { MiniCard } from '@/components/Cards/MiniCard';
+import { TopCard } from "@/components/Cards/TopCard";
+import { MiniCard } from "@/components/Cards/MiniCard";
 
 export default async function ProjectsPage() {
   const projectsList = await getProjects();
