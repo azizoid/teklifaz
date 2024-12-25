@@ -1,14 +1,26 @@
 [
   {
+    "id": "ZibanPirate/nest_struct",
+    "developer": "ZibanPirate",
+    "provider": "github",
+    "name": "nest_struct"
+  },
+  {
+    "id": "azizoid/nam.az",
     "developer": "azizoid",
-    "repositories": [
-      {
-        "provider": "github",
-        "owner": "azizoid",
-        "name": "nam.az",
-        "tags": [],
-        "stars": 3
-      }
-    ]
+    "provider": "github",
+    "name": "nam.az"
+  },
+  {
+    "id": "azizoid/quranaz",
+    "developer": "azizoid",
+    "provider": "github",
+    "name": "quranaz"
+  },
+  {
+    "id": "azizoid/teklifaz",
+    "developer": "azizoid",
+    "provider": "github",
+    "name": "teklifaz"
   }
 ]

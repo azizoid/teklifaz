@@ -1,0 +1,9 @@
+{
+  "developer": "ZibanPirate",
+  "repositories": [
+    {
+      "provider": "github",
+      "name": "nest_struct"
+    }
+  ]
+}

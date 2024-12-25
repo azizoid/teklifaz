@@ -3,10 +3,15 @@
   "repositories": [
     {
       "provider": "github",
-      "owner": "azizoid",
-      "name": "nam.az",
-      "tags": [],
-      "stars": 3
+      "name": "nam.az"
+    },
+    {
+      "provider": "github",
+      "name": "quranaz"
+    },
+    {
+      "provider": "github",
+      "name": "teklifaz"
     }
   ]
 }
