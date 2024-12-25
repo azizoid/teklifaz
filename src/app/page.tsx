@@ -1,50 +1,68 @@
-const Home = () => (
-  <>
-    <h2 className="text-3xl font-bold text-blue-700 mb-6">Welcome to Teklifaz</h2>
-    <p className="text-lg mb-4">
-      Discover and contribute to Azeri developer projects! Here, you can find various open-source repositories
-      built by developers in our community.
-    </p>
+import { MidCard } from "@/components/Cards/MidCard";
+import { getProjects } from "./projects/getProjects";
 
-    <section className="container mx-auto py-16 px-4 lg:px-0 grid grid-cols-1 lg:grid-cols-3 gap-8 bg-white">
+const Home = async () => {
+  const projectsList = await getProjects();
+  console.log({ projectsList })
+  return (
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <article className="md:col-span-2 space-y-6">
+          <section>
+            <p className="leading-relaxed">
+              <strong>Təklif.az</strong> – Azərbaycan texnoloji ekosistemini
+              gücləndirməyi hədəfləyən, yerli proqramçıların GitHub layihələrini
+              bir araya gətirən unikal platformadır. Burada sən öz layihəni
+              paylaşaraq onun daha geniş kütləyə çatmasını təmin edə, rəylər
+              toplaya və gələcək əməkdaşlıqlara qapı aça bilərsən.
+            </p>
+          </section>
 
-      <div className="lg:col-span-1 flex flex-col justify-center">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">
-          IT & Cloud <br /> Consulting Firm
-        </h1>
-        <p className="text-lg text-gray-600 max-w-md">
-          We are an IT consulting firm for SMBs and Enterprises in cybersecurity, cloud, and e-commerce industries.
-        </p>
+          <section>
+            <h2 className="text-2xl font-semibold mb-4">Niyə Təklif.az?</h2>
+            <ul className="list-disc ml-6 space-y-2">
+              <li>
+                <strong>Görünürlük və Tanıtım:</strong>
+                Layihən buradakı kataloqa əlavə olunduqda, digər mütəxəssislər və
+                potensial tərəfdaşlar tərəfindən kəşf edilir.
+              </li>
+              <li>
+                <strong>Fikir Mübadiləsi:</strong>
+                Təcrübəli developerlərin fikirlərini öyrənərək layihəni daha da
+                mükəmməlləşdirmək fürsəti.
+              </li>
+              <li>
+                <strong>İcma Dəstəyi:</strong>
+                Oxşar ideyalı insanlarla tanış olmaq, birgə işləmək və daha güclü,
+                daha çevik komandalar formalaşdırmaq.
+              </li>
+              <li>
+                <strong>İnkişaf Perspektivi:</strong>
+                Sənaye üzrə mütəxəssislər, həvəskarlar və investorlar arasında
+                görünürlüyünü artıraraq layihənin potensialını daha geniş miqyasda
+                nümayiş etdirmək.
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <p className="leading-relaxed">
+              Bu platforma təkcə layihələrin nümayiş olunduğu bir məkan deyil, həm
+              də gələcəkdə innovativ ideyaları birləşdirərək, azərbaycanlıların daha güclü
+              və dinamik bir IT icması formalaşdırmağı hədəfləyir.
+            </p>
+            <p className="font-semibold mt-4">Sən də qoşul və icmamızı böyüt!</p>
+          </section>
+        </article>
+
+        <aside className="md:col-span-1 space-y-4">
+          {projectsList.map((project, index) => (
+            <MidCard project={project} key={index} />
+          ))}
+        </aside>
       </div>
+    </>
+  )
+};
 
-
-      <div className="lg:col-span-2">
-        <div className="space-y-8">
-          <div className="flex items-start space-x-4">
-            <div>
-              <h2 className="text-lg font-semibold text-gray-800">Software Consulting</h2>
-              <p className="text-gray-600">Innovative software development tailored to meet client needs.</p>
-            </div>
-          </div>
-          <div className="border-t border-gray-200"></div>
-          <div className="flex items-start space-x-4">
-            <div>
-              <h2 className="text-lg font-semibold text-gray-800">IT Staff Augmentation</h2>
-              <p className="text-gray-600">We build top-tier IT teams with expertise across industries.</p>
-            </div>
-          </div>
-          <div className="border-t border-gray-200"></div>
-          <div className="flex items-start space-x-4">
-            <div>
-              <h2 className="text-lg font-semibold text-gray-800">SOC as a Service</h2>
-              <p className="text-gray-600">Seamlessly integrating with your IT infrastructure for security needs.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  </>
-);
-
-export default Home
+export default Home;

@@ -18,7 +18,10 @@ export const MidCard = ({ project }: RepoCardProps) => (
           <LinkIcon />
         </Link>
       </CardTitle>
-      <CardDescription>{project.developer}</CardDescription>
+      <CardDescription>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua
+      </CardDescription>
     </CardHeader>
     <CardFooter className="text-sm border-t p-0">
       <div className="flex-1 py-4 flex flex-row justify-center items-center gap-2">
