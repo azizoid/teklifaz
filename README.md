@@ -1,4 +1,5 @@
-# Təklif.az – Azərbaycan texnoloji ekosistemini gücləndirməyi hədəfləyən, yerli proqramçıların GitHub layihələrini bir araya gətirən unikal platformadır. 
+# Təklif.az – yerli proqramçıların GitHub icması
+Azərbaycan texnoloji ekosistemini gücləndirməyi hədəfləyən, yerli proqramçıların GitHub layihələrini bir araya gətirən unikal platformadır. 
 Burada sən öz layihəni paylaşaraq onun daha geniş kütləyə çatmasını təmin edə, rəylər toplaya və gələcək əməkdaşlıqlara qapı aça bilərsən.
 
 ## Niyə Təklif.az?
