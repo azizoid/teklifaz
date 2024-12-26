@@ -10,6 +10,7 @@
     "generate-projects": "ts-node scripts/generateProjects.mjs"
   },
   "dependencies": {
+    "@octokit/rest": "^21.0.2",
     "@prisma/client": "^6.1.0",
     "@radix-ui/react-avatar": "^1.1.2",
     "@radix-ui/react-slot": "^1.1.1",
