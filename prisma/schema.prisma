@@ -27,7 +27,10 @@ model Repository {
 }
 
 model RepoDetails {
-  id           String      @id
+  id           Int         @id @default(autoincrement())
+  repositoryId Int         @unique
   contributors Json
-  repository   Repository  @relation(fields: [id], references: [name])
+  etag         String?
+  lastUpdated  DateTime    @default(now())
+  repository   Repository  @relation(fields: [repositoryId], references: [id])
 }
