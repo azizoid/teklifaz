@@ -2,7 +2,11 @@ import { prisma } from "@/lib/prismadb";
 import { CustomError } from "@/lib/CustomError";
 import { fetchGitHubRepo } from "@/utils/fetchGithubRepo";
 
-export const fetchAndUpdateRepoData = async (name: string, owner: string, repoName: string) => {
+export const fetchAndUpdateRepoData = async (
+  name: string,
+  owner: string,
+  repoName: string,
+) => {
   const repo = await prisma.repository.findUnique({ where: { name } });
 
   try {
@@ -17,7 +21,10 @@ export const fetchAndUpdateRepoData = async (name: string, owner: string, repoNa
     };
 
     if (repo) {
-      return prisma.repository.update({ where: { name }, data: conditionsData });
+      return prisma.repository.update({
+        where: { name },
+        data: conditionsData,
+      });
     } else {
       return prisma.repository.create({
         data: { name, repo_name: repoName, owner, ...conditionsData },
@@ -26,12 +33,17 @@ export const fetchAndUpdateRepoData = async (name: string, owner: string, repoNa
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.status === 304) {
-      console.log('304 Not Modified. Returning existing repository from the database.');
+      console.log(
+        "304 Not Modified. Returning existing repository from the database.",
+      );
       if (repo) {
         return repo;
       }
-      throw new CustomError('Weird! No changes detected, but repository not found in the database. ', 500);
+      throw new CustomError(
+        "Weird! No changes detected, but repository not found in the database. ",
+        500,
+      );
     }
     throw error;
   }
-}
+};
