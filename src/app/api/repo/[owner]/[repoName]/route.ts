@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isRepoExists } from "@/utils/isRepoExists";
 import { CustomError } from "@/lib/CustomError";
-import { fetchAndUpdateRepoData } from "./fetchAndUpdateRepoData.service";
+import { repositoryService } from "./repository.service";
 import { handleError } from "@/utils/handleError";
 
 type Params = Promise<{ owner: string; repoName: string }>;
@@ -20,7 +20,7 @@ export const GET = async (_: NextRequest, res: { params: Params }) => {
       );
     }
 
-    const repo = await fetchAndUpdateRepoData(id, owner, repoName);
+    const repo = await repositoryService(id, owner, repoName);
 
     return NextResponse.json(repo, { status: 200 });
   } catch (error) {

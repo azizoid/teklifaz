@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { fetchContributors } from './contributors.service';
+import { contributorsService } from './contributors.service';
 import { handleError } from '@/utils/handleError';
 import { isRepoInDb } from '@/utils/isRepoInDb';
 
@@ -11,7 +11,7 @@ export const GET = async (_: NextRequest, res: { params: Params }) => {
 
     const repo = await isRepoInDb(owner, repoName)
 
-    const contributors = await fetchContributors(repo.id, repo.owner, repo.repo_name);
+    const contributors = await contributorsService(repo.id, repo.owner, repo.repo_name);
 
     // await updateContributors(repo.id, contributors, newEtag);
 

@@ -1,13 +1,13 @@
 import { CustomError } from "@/lib/CustomError";
 import { octokit } from "@/lib/octokit";
 
-export const fetchGitHubContributors = async (
+export const fetchRepositoryUtility = async (
   owner: string,
   repoName: string,
   etag?: string | null,
 ) => {
   try {
-    return await octokit.repos.listContributors({
+    return await octokit.repos.get({
       owner,
       repo: repoName,
       ...(etag && { headers: { "If-None-Match": etag } }),

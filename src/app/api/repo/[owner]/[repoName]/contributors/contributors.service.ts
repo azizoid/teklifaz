@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prismadb';
-import { fetchGitHubContributors } from '@/utils/fetchGithubContributors';
 import { CustomError } from '@/lib/CustomError';
+import { fetchContributors } from './fetchContributors.utility';
 
 export interface Contributor {
   login?: string;
@@ -9,7 +9,7 @@ export interface Contributor {
   contributions: number;
 }
 
-export const fetchContributors = async (
+export const contributorsService = async (
   id: number,
   owner: string,
   repoName: string) => {
@@ -20,7 +20,7 @@ export const fetchContributors = async (
   const etag = repoDetails?.etag || null;
 
   try {
-    const { data: contributorsData, headers } = await fetchGitHubContributors(owner, repoName, etag);
+    const { data: contributorsData, headers } = await fetchContributors(owner, repoName, etag);
 
     const contributors = contributorsData.map(contributor => ({
       login: contributor.login,
