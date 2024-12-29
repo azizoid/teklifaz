@@ -1,0 +1,1 @@
+export type OwnerRepoParams = { owner: string; repoName: string }

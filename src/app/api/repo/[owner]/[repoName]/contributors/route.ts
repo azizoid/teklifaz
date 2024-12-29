@@ -1,22 +1,15 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { contributorsService } from './contributors.service';
-import { handleError } from '@/utils/handleError';
-import { isRepoInDb } from '@/utils/isRepoInDb';
+import { NextRequest, NextResponse } from "next/server";
+import { withTryCatch } from "@/utils/withTryCatch";
+import { getOwnerRepoParam } from "@/utils/getOwnerRepoParam";
+import { syncContributors } from "./syncContributors";
+import { isRepoInDb } from "@/utils/isRepoInDb";
 
-type Params = Promise<{ owner: string, repoName: string }>;
+export const GET = withTryCatch(async (_req: NextRequest, ctx) => {
+  const { owner, repoName } = await getOwnerRepoParam(ctx);
 
-export const GET = async (_: NextRequest, res: { params: Params }) => {
-  try {
-    const { owner, repoName } = await res.params;
+  const repo = await isRepoInDb(owner, repoName);
 
-    const repo = await isRepoInDb(owner, repoName)
+  const contributors = await syncContributors(repo.id, repo.owner, repo.repo_name);
 
-    const contributors = await contributorsService(repo.id, repo.owner, repo.repo_name);
-
-    // await updateContributors(repo.id, contributors, newEtag);
-
-    return NextResponse.json(contributors, { status: 200 });
-  } catch (error) {
-    return handleError(error);
-  }
-};
+  return NextResponse.json(contributors, { status: 200 });
+});
