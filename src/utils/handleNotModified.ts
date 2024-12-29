@@ -8,12 +8,10 @@ interface HandleNotModifiedOptions<ExistingType> {
 export function handleNotModified<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ServiceFn extends (args: any) => Promise<any>,
-  ExistingType
->(
-  serviceFn: ServiceFn
-) {
+  ExistingType,
+>(serviceFn: ServiceFn) {
   return async (
-    args: Parameters<ServiceFn>[0] & HandleNotModifiedOptions<ExistingType>
+    args: Parameters<ServiceFn>[0] & HandleNotModifiedOptions<ExistingType>,
   ): Promise<ReturnType<ServiceFn>> => {
     try {
       return await serviceFn(args);
@@ -27,8 +25,9 @@ export function handleNotModified<
         }
 
         throw new CustomError(
-          args.notFoundMessage || "Weird! No changes detected, but the record was not found.",
-          500
+          args.notFoundMessage ||
+            "Weird! No changes detected, but the record was not found.",
+          500,
         );
       }
 

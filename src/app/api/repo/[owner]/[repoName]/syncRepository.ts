@@ -2,7 +2,11 @@ import { handleNotModified } from "@/utils/handleNotModified";
 import { prisma } from "@/lib/prismadb";
 import { syncRepositoryData } from "./syncRepositoryData";
 
-export const syncRepository = async (id: string, owner: string, repoName: string) => {
+export const syncRepository = async (
+  id: string,
+  owner: string,
+  repoName: string,
+) => {
   const existingRepo = await prisma.repository.findUnique({
     where: { name: id },
   });

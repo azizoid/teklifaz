@@ -11,7 +11,7 @@ export const GET = withTryCatch(async (_req: NextRequest, ctx) => {
   if (!isRepoExists(id)) {
     throw new CustomError(
       "This repository is not part of our community. To add this repo to the database, please follow the link.",
-      400
+      400,
     );
   }
 

@@ -6,11 +6,12 @@ interface HandlerContext {
   params: Promise<OwnerRepoParams>;
 }
 
-type HandlerFn = (req: NextRequest, ctx: HandlerContext) => Promise<NextResponse>;
+type HandlerFn = (
+  req: NextRequest,
+  ctx: HandlerContext,
+) => Promise<NextResponse>;
 
-export const withTryCatch = (
-  handler: HandlerFn
-): HandlerFn => {
+export const withTryCatch = (handler: HandlerFn): HandlerFn => {
   return async (req, ctx) => {
     try {
       return await handler(req, ctx);
@@ -18,4 +19,4 @@ export const withTryCatch = (
       return handleError(error);
     }
   };
-}
+};

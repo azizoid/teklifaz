@@ -9,7 +9,11 @@ export const GET = withTryCatch(async (_req: NextRequest, ctx) => {
 
   const repo = await isRepoInDb(owner, repoName);
 
-  const contributors = await syncContributors(repo.id, repo.owner, repo.repo_name);
+  const contributors = await syncContributors(
+    repo.id,
+    repo.owner,
+    repo.repo_name,
+  );
 
   return NextResponse.json(contributors, { status: 200 });
 });

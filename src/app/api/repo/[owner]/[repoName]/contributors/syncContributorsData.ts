@@ -17,7 +17,11 @@ interface ContributorsServiceArgs extends OwnerRepoParams {
 export const syncContributorsData = async (args: ContributorsServiceArgs) => {
   const { repositoryId, owner, repoName, etag } = args;
 
-  const { data: contributorsData, headers } = await getGitHubContributors(owner, repoName, etag);
+  const { data: contributorsData, headers } = await getGitHubContributors(
+    owner,
+    repoName,
+    etag,
+  );
   const contributors = contributorsData.map((c: Contributor) => ({
     login: c.login,
     avatar_url: c.avatar_url,
@@ -39,4 +43,4 @@ export const syncContributorsData = async (args: ContributorsServiceArgs) => {
       ...conditions,
     },
   });
-}
+};
