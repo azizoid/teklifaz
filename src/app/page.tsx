@@ -3,7 +3,7 @@ import { getProjects } from "./projects/getProjects";
 
 const Home = async () => {
   const projectsList = await getProjects();
-  console.log({ projectsList })
+  console.log({ projectsList });
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -23,8 +23,8 @@ const Home = async () => {
             <ul className="list-disc ml-6 space-y-2">
               <li>
                 <strong>Görünürlük və Tanıtım:</strong>
-                Layihən buradakı kataloqa əlavə olunduqda, digər mütəxəssislər və
-                potensial tərəfdaşlar tərəfindən kəşf edilir.
+                Layihən buradakı kataloqa əlavə olunduqda, digər mütəxəssislər
+                və potensial tərəfdaşlar tərəfindən kəşf edilir.
               </li>
               <li>
                 <strong>Fikir Mübadiləsi:</strong>
@@ -33,25 +33,28 @@ const Home = async () => {
               </li>
               <li>
                 <strong>İcma Dəstəyi:</strong>
-                Oxşar ideyalı insanlarla tanış olmaq, birgə işləmək və daha güclü,
-                daha çevik komandalar formalaşdırmaq.
+                Oxşar ideyalı insanlarla tanış olmaq, birgə işləmək və daha
+                güclü, daha çevik komandalar formalaşdırmaq.
               </li>
               <li>
                 <strong>İnkişaf Perspektivi:</strong>
                 Sənaye üzrə mütəxəssislər, həvəskarlar və investorlar arasında
-                görünürlüyünü artıraraq layihənin potensialını daha geniş miqyasda
-                nümayiş etdirmək.
+                görünürlüyünü artıraraq layihənin potensialını daha geniş
+                miqyasda nümayiş etdirmək.
               </li>
             </ul>
           </section>
 
           <section>
             <p className="leading-relaxed">
-              Bu platforma təkcə layihələrin nümayiş olunduğu bir məkan deyil, həm
-              də gələcəkdə innovativ ideyaları birləşdirərək, azərbaycanlıların daha güclü
-              və dinamik bir IT icması formalaşdırmağı hədəfləyir.
+              Bu platforma təkcə layihələrin nümayiş olunduğu bir məkan deyil,
+              həm də gələcəkdə innovativ ideyaları birləşdirərək,
+              azərbaycanlıların daha güclü və dinamik bir IT icması
+              formalaşdırmağı hədəfləyir.
             </p>
-            <p className="font-semibold mt-4">Sən də qoşul və icmamızı böyüt!</p>
+            <p className="font-semibold mt-4">
+              Sən də qoşul və icmamızı böyüt!
+            </p>
           </section>
         </article>
 
@@ -62,7 +65,7 @@ const Home = async () => {
         </aside>
       </div>
     </>
-  )
+  );
 };
 
 export default Home;

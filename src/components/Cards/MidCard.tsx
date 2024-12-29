@@ -19,8 +19,8 @@ export const MidCard = ({ project }: RepoCardProps) => (
         </Link>
       </CardTitle>
       <CardDescription>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua
       </CardDescription>
     </CardHeader>
     <CardFooter className="text-sm border-t p-0">

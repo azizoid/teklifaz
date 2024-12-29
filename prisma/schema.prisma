@@ -23,4 +23,14 @@ model Repository {
   details     Json
   etag        String?
   lastUpdated DateTime @default(now())
+  repoDetails RepoDetails?
+}
+
+model RepoDetails {
+  id           Int         @id @default(autoincrement())
+  repositoryId Int         @unique
+  contributors Json
+  etag         String?
+  lastUpdated  DateTime    @default(now())
+  repository   Repository  @relation(fields: [repositoryId], references: [id])
 }
