@@ -7,14 +7,20 @@ export interface ContributorProps {
   contributions: number;
 }
 
-export const extractContributorsData = (data: Repository): ContributorProps[] => {
-  const contributorsParsed = JSON.parse(data.contributors?.toString() || '[]') as ContributorProps[];
-  const contributorsResult = contributorsParsed.map(({ login, avatar_url, html_url, contributions }) => ({
-    login,
-    avatar_url,
-    html_url,
-    contributions,
-  })).sort((a, b) => b.contributions - a.contributions)
+export const extractContributorsData = (
+  data: Repository,
+): ContributorProps[] => {
+  const contributorsParsed = JSON.parse(
+    data.contributors?.toString() || "[]",
+  ) as ContributorProps[];
+  const contributorsResult = contributorsParsed
+    .map(({ login, avatar_url, html_url, contributions }) => ({
+      login,
+      avatar_url,
+      html_url,
+      contributions,
+    }))
+    .sort((a, b) => b.contributions - a.contributions);
 
   return contributorsResult;
-}
+};

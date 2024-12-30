@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -8,15 +8,12 @@ import { FaStar, FaExternalLinkSquareAlt } from "react-icons/fa";
 import { Repository } from "@prisma/client";
 import { ContributorProps } from "@/lib/github.types";
 
-
 type RepoViewProps = {
   repoData: Repository;
   contributors: ContributorProps[];
-}
+};
 
 export const RepoView = ({ repoData, contributors }: RepoViewProps) => {
-
-
   return (
     <div className="min-h-screen flex flex-col  p-6">
       <header className="text-center py-6">
@@ -108,4 +105,4 @@ export const RepoView = ({ repoData, contributors }: RepoViewProps) => {
       </section>
     </div>
   );
-}
+};
