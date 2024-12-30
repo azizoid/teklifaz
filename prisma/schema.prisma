@@ -20,18 +20,9 @@ model Repository {
   owner       String
   stars       Int
   activity    Int
+  html_url    String
+  contributors Json
   details     Json
   etag        String?
   lastUpdated DateTime @default(now())
-  html_url    String
-  repoDetails RepoDetails?
-}
-
-model RepoDetails {
-  id           Int         @id @default(autoincrement())
-  repositoryId Int         @unique
-  contributors Json
-  etag         String?
-  lastUpdated  DateTime    @default(now())
-  repository   Repository  @relation(fields: [repositoryId], references: [id])
 }
