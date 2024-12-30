@@ -12,6 +12,10 @@
     {
       "provider": "github",
       "name": "teklifaz"
+    },
+    {
+      "provider": "github",
+      "name": "sirasayi"
     }
   ]
 }

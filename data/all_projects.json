@@ -22,5 +22,11 @@
     "developer": "azizoid",
     "provider": "github",
     "name": "teklifaz"
+  },
+  {
+    "id": "azizoid/sirasayi",
+    "developer": "azizoid",
+    "provider": "github",
+    "name": "sirasayi"
   }
 ]
