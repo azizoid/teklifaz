@@ -14,6 +14,7 @@ export const syncRepositoryData = async (args: RepositoryServiceArgs) => {
   const conditions = {
     stars: githubResponse.data.stargazers_count || 0,
     activity: 0,
+    html_url: githubResponse.data.html_url,
     etag: githubResponse.headers.etag || null,
     details: JSON.stringify(githubResponse.data),
     lastUpdated: new Date(),

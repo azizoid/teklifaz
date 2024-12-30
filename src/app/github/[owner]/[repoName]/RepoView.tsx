@@ -1,65 +1,33 @@
-import { components } from "@octokit/openapi-types";
+'use client';
 
-import { fetchFromGitHubWithETag } from "@/utils/fetchFromGithub";
 import Link from "next/link";
 import Image from "next/image";
+
 import { FaStar, FaExternalLinkSquareAlt } from "react-icons/fa";
+import { Contributor } from "@/app/api/github/[owner]/[repoName]/contributors/syncContributorsData";
+import { Repository } from "@prisma/client";
 
-type RepoProps = components["schemas"]["full-repository"];
-type ContributorsProps = components["schemas"]["contributor"];
 
-const ProjectsPage = async ({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) => {
-  const [slugDev, slugRepo] = (await params).slug;
+type RepoViewProps = {
+  repoData: Repository;
+  contributors: Contributor[];
+  totalActivity: number;
+}
 
-  const repo = await fetchFromGitHubWithETag<RepoProps>(
-    `repos/${slugDev}/${slugRepo}`,
-  );
-  const contributorsRaw = await fetchFromGitHubWithETag<ContributorsProps[]>(
-    `repos/${slugDev}/${slugRepo}/contributors`,
-  );
+export const RepoView = ({ repoData, contributors, totalActivity }: RepoViewProps) => {
 
-  const {
-    name,
-    full_name,
-    html_url,
-    // description,
-    // collaborators_url,
-    // pushed_at,
-    stargazers_count,
-    // watchers_count,
-    // language,
-    // topics
-  } = repo;
-
-  const contributors = contributorsRaw
-    .map(({ login, avatar_url, html_url, contributions }) => ({
-      login,
-      avatar_url,
-      html_url,
-      contributions,
-    }))
-    .sort((a, b) => b.contributions - a.contributions);
-
-  const totalActivity = contributors.reduce(
-    (acc, curr) => acc + curr.contributions,
-    0,
-  );
 
   return (
     <div className="min-h-screen flex flex-col  p-6">
       <header className="text-center py-6">
-        <h1 className="text-4xl font-bold">{name}</h1>
+        <h1 className="text-4xl font-bold">{repoData.name}</h1>
       </header>
 
       <section className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full mb-8">
         <div className="flex flex-col items-center content-center bg-teklif-200 hover:bg-teklif-300 text-primary-dark p-4">
           <p>Total Stars</p>
           <div className="flex items-center space-x-4">
-            <h2 className="text-3xl font-semibold">{stargazers_count}</h2>
+            <h2 className="text-3xl font-semibold">{repoData.stars}</h2>
             <FaStar size="24" />
           </div>
         </div>
@@ -105,12 +73,12 @@ const ProjectsPage = async ({
       <section className="mb-8">
         <h2 className="text-2xl font-bold mb-4">Repository</h2>
         <Link
-          href={html_url}
+          href={repoData.html_url}
           className="bg-teklif-200 hover:bg-teklif-300 text-blue-600 text-lg inline-flex items-center gap-2 bg-gray-200 rounded p-4"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaExternalLinkSquareAlt /> {full_name}
+          <FaExternalLinkSquareAlt /> {repoData.name}
         </Link>
       </section>
 
@@ -140,6 +108,4 @@ const ProjectsPage = async ({
       </section>
     </div>
   );
-};
-
-export default ProjectsPage;
+}

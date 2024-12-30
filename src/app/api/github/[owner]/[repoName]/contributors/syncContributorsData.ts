@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prismadb";
 import { getGitHubContributors } from "./getGitHubContributors";
 import { OwnerRepoParams } from "@/lib/github.types";
 
-interface Contributor {
+export interface Contributor {
   login?: string;
   avatar_url?: string;
   html_url?: string;
