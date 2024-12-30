@@ -19,6 +19,8 @@ export const syncRepositoryData = async (args: RepositoryServiceArgs) => {
   )
 
   const conditions = {
+    avatar_url: githubResponse.data.owner.avatar_url,
+    description: githubResponse.data.description || null,
     stars: githubResponse.data.stargazers_count || 0,
     activity,
     html_url: githubResponse.data.html_url,

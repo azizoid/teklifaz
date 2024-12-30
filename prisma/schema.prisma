@@ -18,6 +18,8 @@ model Repository {
   name        String   @unique
   repo_name   String 
   owner       String
+  avatar_url  String
+  description String
   stars       Int
   activity    Int
   html_url    String

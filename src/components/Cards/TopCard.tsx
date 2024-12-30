@@ -20,7 +20,7 @@ export const TopCard = ({ repo }: RepoCardProps) => (
       <CardHeader className="flex flex-row w-full pt-0 gap-4 space-y-0">
         <Avatar className="w-16 h-16 flex-shrink-0 opacity-50 group-hover:opacity-100 transition-opacity duration-300">
           <AvatarImage
-            src="https://avatars.githubusercontent.com/u/47358"
+            src={repo.avatar_url}
             width={16}
             height={16}
             className="object-cover rounded-b-lg w-full h-full"
@@ -38,8 +38,7 @@ export const TopCard = ({ repo }: RepoCardProps) => (
 
       <CardContent className="grow content-end">
         <CardDescription>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua
+          {repo.description || "No description provided."}
         </CardDescription>
       </CardContent>
 
