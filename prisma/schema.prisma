@@ -23,6 +23,7 @@ model Repository {
   details     Json
   etag        String?
   lastUpdated DateTime @default(now())
+  html_url    String
   repoDetails RepoDetails?
 }
 
