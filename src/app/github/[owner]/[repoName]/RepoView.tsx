@@ -4,17 +4,17 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { FaStar, FaExternalLinkSquareAlt } from "react-icons/fa";
-import { Contributor } from "@/app/api/github/[owner]/[repoName]/contributors/syncContributorsData";
+
 import { Repository } from "@prisma/client";
+import { ContributorProps } from "@/lib/github.types";
 
 
 type RepoViewProps = {
   repoData: Repository;
-  contributors: Contributor[];
-  totalActivity: number;
+  contributors: ContributorProps[];
 }
 
-export const RepoView = ({ repoData, contributors, totalActivity }: RepoViewProps) => {
+export const RepoView = ({ repoData, contributors }: RepoViewProps) => {
 
 
   return (
@@ -34,7 +34,7 @@ export const RepoView = ({ repoData, contributors, totalActivity }: RepoViewProp
 
         <div className="flex flex-col items-center bg-teklif-200 hover:bg-teklif-300 text-primary-dark  p-4">
           <p>Total Activity</p>
-          <h2 className="text-3xl font-semibold">{totalActivity}</h2>
+          <h2 className="text-3xl font-semibold">{repoData.activity}</h2>
           <p>from {contributors.length} contributors</p>
         </div>
 

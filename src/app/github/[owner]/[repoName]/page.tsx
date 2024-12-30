@@ -3,56 +3,39 @@
 import { fetcher } from '@/utils/fetcher';
 import { useParams } from 'next/navigation';
 import useSWR from 'swr';
-import { useMemo, useState } from "react";
-import { Contributor } from "@/app/api/github/[owner]/[repoName]/contributors/syncContributorsData";
-import { RepoDetails as RepoDetialsModel, Repository } from "@prisma/client";
+import { useState } from "react";
+
+import { Repository as RepositoryModel } from "@prisma/client";
 import { RepoView } from "./RepoView";
+import { ContributorProps } from '@/lib/github.types';
+import { extractContributorsData } from '@/utils/extractContributorsData';
 
 export default function RepoDetails() {
 
   const { owner, repoName } = useParams();
 
-  const [contributors, setContributors] = useState<Contributor[]>([]);
+  const [contributors, setContributors] = useState<ContributorProps[]>([]);
 
   const {
     data: repoData,
     isLoading: repoLoading
-  } = useSWR<Repository>(
+  } = useSWR<RepositoryModel>(
     `/api/github/${owner}/${repoName}`,
-    fetcher
-  );
-
-  const {
-    isLoading: contributorsLoading
-  } = useSWR<RepoDetialsModel>(
-    `/api/github/${owner}/${repoName}/contributors`,
     fetcher,
     {
       onSuccess: (data) => {
-        const contributorsParsed = JSON.parse(data?.contributors?.toString() || '[]') as Contributor[];
-        const contributorsTemp = contributorsParsed.map(({ login, avatar_url, html_url, contributions }) => ({
-          login,
-          avatar_url,
-          html_url,
-          contributions,
-        }))
-          .sort((a, b) => b.contributions - a.contributions);
-        setContributors(contributorsTemp);
+        const extractedData = extractContributorsData(data)
+        setContributors(extractedData);
       }
     }
   );
 
-  const totalActivity = useMemo(() => contributors.reduce(
-    (acc, curr) => acc + curr.contributions,
-    0,
-  ), [contributors])
-
-  if (repoLoading || contributorsLoading) {
+  if (repoLoading) {
     return <div>Loading...</div>
   }
 
   if (repoData) {
-    return <RepoView repoData={repoData} contributors={contributors} totalActivity={totalActivity} />
+    return <RepoView repoData={repoData} contributors={contributors} />
   }
 
   return <div>Error...</div>
