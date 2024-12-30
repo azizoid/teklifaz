@@ -10,6 +10,7 @@ interface RepositoryServiceArgs extends OwnerRepoParams {
 
 export const syncRepositoryData = async (args: RepositoryServiceArgs) => {
   const { id, owner, repoName, etag } = args;
+
   const githubResponse = await getGitHubRepository(owner, repoName, etag);
   const contributorsResponse = await getGitHubContributors(owner, repoName);
   const activity = contributorsResponse.data.reduce(
@@ -22,7 +23,6 @@ export const syncRepositoryData = async (args: RepositoryServiceArgs) => {
     activity,
     html_url: githubResponse.data.html_url,
     contributors: JSON.stringify(contributorsResponse.data),
-    details: JSON.stringify(githubResponse.data),
     etag: githubResponse.headers.etag || null,
     lastUpdated: new Date(),
   };

@@ -22,7 +22,6 @@ model Repository {
   activity    Int
   html_url    String
   contributors Json
-  details     Json
   etag        String?
   lastUpdated DateTime @default(now())
 }
