@@ -13,13 +13,13 @@ const aggregateProjects = async () => {
     if (fs.existsSync(infoFile)) {
       const data = JSON.parse(fs.readFileSync(infoFile, "utf-8"));
 
+      // Flatten the structure by iterating through each repository
       for (const repository of data.repositories) {
         allProjects.push({
+          id: `${data.developer}/${repository.name}`,
           developer: data.developer,
           provider: repository.provider,
           name: repository.name,
-          tags: repository.tags,
-          stars: repository.stars,
         });
       }
     }
@@ -32,4 +32,4 @@ const aggregateProjects = async () => {
   );
 };
 
-export default aggregateProjects().catch((err) => console.error(err));
+aggregateProjects().catch((err) => console.error(err));

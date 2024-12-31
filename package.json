@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-projects": "ts-node scripts/generateProjects.mjs"
+    "generate:prisma": "prisma generate",
+    "generate:github": "ts-node scripts/generateProjects.mjs"
   },
   "dependencies": {
     "@octokit/rest": "^21.0.2",
@@ -22,6 +23,7 @@
     "react": "^19",
     "react-dom": "^19",
     "react-icons": "^5.4.0",
+    "swr": "^2.3.0",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7"
   },

@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { RepoCardProps } from "./RepoCard.type";
+import { RepoCardProps } from "./Card.types";
 import { ActivityIcon, LinkIcon, StarIcon, UsersIcon } from "lucide-react";
 
 export const MidCard = ({ project }: RepoCardProps) => (

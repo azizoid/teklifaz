@@ -1,9 +1,4 @@
-import { MidCard } from "@/components/Cards/MidCard";
-import { getProjects } from "./projects/getProjects";
-
 const Home = async () => {
-  const projectsList = await getProjects();
-  console.log({ projectsList });
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -57,12 +52,12 @@ const Home = async () => {
             </p>
           </section>
         </article>
-
+        {/* 
         <aside className="md:col-span-1 space-y-4">
           {projectsList.map((project, index) => (
             <MidCard project={project} key={index} />
           ))}
-        </aside>
+        </aside> */}
       </div>
     </>
   );
