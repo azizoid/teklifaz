@@ -4,7 +4,7 @@ import { CiStar } from "react-icons/ci";
 
 export const MiniCard = ({ repo }: RepoCardProps) => (
   <Link
-    href={`/projects/${repo.name}`}
+    href={`/github/${repo.name}`}
     className="border-r border-b hover:bg-gray-50"
   >
     <div className="flex flex-row justify-between gap-2 p-4">

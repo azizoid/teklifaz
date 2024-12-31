@@ -1,3 +1,6 @@
+import { Sidebar } from "@/components/Sidebar/Sidebar";
+import { Suspense } from "react";
+
 const Home = async () => {
   return (
     <>
@@ -52,12 +55,12 @@ const Home = async () => {
             </p>
           </section>
         </article>
-        {/* 
+
         <aside className="md:col-span-1 space-y-4">
-          {projectsList.map((project, index) => (
-            <MidCard project={project} key={index} />
-          ))}
-        </aside> */}
+          <Suspense fallback={<div>Loading...</div>}>
+            <Sidebar />
+          </Suspense>
+        </aside>
       </div>
     </>
   );

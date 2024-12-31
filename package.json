@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "generate:prisma": "prisma generate",
-    "generate:github": "ts-node scripts/generateProjects.mjs"
+    "generate:github": "ts-node scripts/generate-github.mjs"
   },
   "dependencies": {
     "@octokit/rest": "^21.0.2",

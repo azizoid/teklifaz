@@ -7,15 +7,15 @@ import {
   CardTitle,
 } from "../ui/card";
 import { RepoCardProps } from "./Card.types";
-import { ActivityIcon, LinkIcon, StarIcon, UsersIcon } from "lucide-react";
+import { ActivityIcon, LinkIcon, StarIcon } from "lucide-react";
 
-export const MidCard = ({ project }: RepoCardProps) => (
+export const MidCard = ({ repo }: RepoCardProps) => (
   <Card>
-    <CardHeader>
-      <CardTitle className="flex flex-row justify-between">
-        {project.name}
-        <Link href={`/projects/${project.developer}/${project.name}`}>
-          <LinkIcon />
+    <CardHeader className="p-4 pb-2 text-sm">
+      <CardTitle className="flex flex-row justify-between text-md">
+        {repo.name}
+        <Link href={`/github/${repo.name}`}>
+          <LinkIcon size={16} />
         </Link>
       </CardTitle>
       <CardDescription>
@@ -24,14 +24,11 @@ export const MidCard = ({ project }: RepoCardProps) => (
       </CardDescription>
     </CardHeader>
     <CardFooter className="text-sm border-t p-0">
-      <div className="flex-1 py-4 flex flex-row justify-center items-center gap-2">
-        <StarIcon size={12} /> 5
+      <div className="flex-1 py-2 flex flex-row justify-center items-center gap-2 border-r">
+        <StarIcon size={12} /> {repo.stars}
       </div>
-      <div className="flex-1 border-x py-4 flex flex-row justify-center items-center gap-2">
-        <UsersIcon size={12} /> 5
-      </div>
-      <div className="flex-1 py-4 flex flex-row justify-center items-center gap-2">
-        <ActivityIcon size={12} /> 5
+      <div className="flex-1 py-2 flex flex-row justify-center items-center gap-2">
+        <ActivityIcon size={12} /> {repo.activity}
       </div>
     </CardFooter>
   </Card>
