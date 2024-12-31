@@ -27,3 +27,10 @@ model Repository {
   etag        String?
   lastUpdated DateTime @default(now())
 }
+
+model Etag {
+  id          Int      @id @default(autoincrement())
+  href        String   @unique
+  etag        String?
+  lastUpdated DateTime @default(now())
+}
