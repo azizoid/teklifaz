@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prismadb";
 export default async function ProjectsPage() {
   const projectsList = await prisma.repository.findMany({
     orderBy: {
-      activity: "desc",
+      stars: "desc",
     },
   });
 
