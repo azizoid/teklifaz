@@ -10,12 +10,11 @@ interface RepositoryServiceArgs extends OwnerRepoParams {
 }
 
 export const syncRepositoryData = async (
-  args: RepositoryServiceArgs,
+  { id: name, owner, repoName }: RepositoryServiceArgs,
 ): Promise<Repository> => {
-  const { id: name, owner, repoName, etag } = args;
-
-  const githubResponse = await getGitHubRepository(owner, repoName, etag);
+  const githubResponse = await getGitHubRepository(owner, repoName);
   const contributorsResponse = await getGitHubContributors(owner, repoName);
+
   const activity = contributorsResponse.data.reduce(
     (acc, curr) => acc + curr.contributions,
     0,

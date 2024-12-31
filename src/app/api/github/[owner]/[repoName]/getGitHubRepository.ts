@@ -1,12 +1,21 @@
 import { octokit } from "@/lib/octokit";
+import { fetchWithEtag, GitHubRequest } from "@/utils/getEtag";
+import { RestEndpointMethodTypes } from "@octokit/rest";
+
+type GitHubRepositoryType = RestEndpointMethodTypes["repos"]["get"]["response"];
 
 export const getGitHubRepository = async (
   owner: string,
   repoName: string,
-  etag?: string | null,
-) =>
-  await octokit.repos.get({
-    owner,
-    repo: repoName,
-    ...(etag && { headers: { "If-None-Match": etag } }),
-  });
+) => {
+  const request: GitHubRequest = {
+    href: octokit.repos.get.endpoint({ owner, repo: repoName }).url,
+    fetchData: (etag?: string | null) => octokit.repos.get({
+      owner,
+      repo: repoName,
+      ...(etag && { headers: { "If-None-Match": etag } }),
+    })
+  }
+
+  return fetchWithEtag<GitHubRepositoryType>(request);
+}
