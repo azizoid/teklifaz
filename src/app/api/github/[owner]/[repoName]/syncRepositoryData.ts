@@ -9,8 +9,10 @@ interface RepositoryServiceArgs extends OwnerRepoParams {
   etag?: string | null;
 }
 
-export const syncRepositoryData = async (args: RepositoryServiceArgs) => {
-  const { id, owner, repoName, etag } = args;
+export const syncRepositoryData = async (
+  args: RepositoryServiceArgs,
+): Promise<Repository> => {
+  const { id: name, owner, repoName, etag } = args;
 
   const githubResponse = await getGitHubRepository(owner, repoName, etag);
   const contributorsResponse = await getGitHubContributors(owner, repoName);
@@ -19,7 +21,7 @@ export const syncRepositoryData = async (args: RepositoryServiceArgs) => {
     0,
   );
 
-  const conditions: Partial<Repository> = {
+  const conditions = {
     avatar_url: githubResponse.data.owner.avatar_url,
     description: githubResponse.data.description || "",
     stars: githubResponse.data.stargazers_count || 0,
@@ -31,10 +33,10 @@ export const syncRepositoryData = async (args: RepositoryServiceArgs) => {
   };
 
   return prisma.repository.upsert({
-    where: { name: id },
+    where: { name },
     update: conditions,
     create: {
-      name: id,
+      name,
       repo_name: repoName,
       owner,
       ...conditions,

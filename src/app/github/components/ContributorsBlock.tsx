@@ -3,7 +3,11 @@ import Image from "next/image";
 import { ContributorProps } from "@/lib/github.types";
 import Link from "next/link";
 
-export const ContributorsBlock = ({ contributors }: { contributors: ContributorProps[] }) => (
+export const ContributorsBlock = ({
+  contributors,
+}: {
+  contributors: ContributorProps[];
+}) => (
   <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
     {contributors.map((contributor, index) => (
       <Link

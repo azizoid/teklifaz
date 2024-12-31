@@ -9,7 +9,7 @@ export const extractContributorsData = (
   ) as ContributorProps[];
   const contributorsResult = contributorsParsed
     .map(({ login, avatar_url, html_url, contributions }) => ({
-      login: login || '',
+      login,
       avatar_url,
       html_url,
       contributions,

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import useSWR from "swr";
 import { MidCard } from "../Cards/MidCard";
@@ -6,7 +6,10 @@ import { fetcher } from "@/utils/fetcher";
 import { Repository } from "@prisma/client";
 
 export const Sidebar = () => {
-  const { data: githubRepositories, error } = useSWR<Repository[]>('/api/github', fetcher);
+  const { data: githubRepositories, error } = useSWR<Repository[]>(
+    "/api/github",
+    fetcher,
+  );
 
   if (error) {
     return <div>Error loading repositories.</div>;
@@ -26,5 +29,5 @@ export const Sidebar = () => {
         <MidCard repo={repo} key={index} />
       ))}
     </>
-  )
-}
+  );
+};

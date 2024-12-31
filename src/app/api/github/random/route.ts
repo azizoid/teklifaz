@@ -7,11 +7,11 @@ export const GET = async () => {
       name: true,
       stars: true,
       activity: true,
-    }
+    },
   });
 
   const shuffled = repositories.sort(() => 0.5 - Math.random());
   const randomRepositories = shuffled.slice(0, 3);
 
   return NextResponse.json(randomRepositories);
-}
+};

@@ -2,7 +2,11 @@ import Image from "next/image";
 
 import { ContributorProps } from "@/lib/github.types";
 
-export const ContributorsWidget = ({ contributors }: { contributors: ContributorProps[] }) => (
+export const ContributorsWidget = ({
+  contributors,
+}: {
+  contributors: ContributorProps[];
+}) => (
   <>
     <div className="flex flex-col items-center">
       <div className="flex items-center space-x-2">
