@@ -21,11 +21,8 @@ model Repository {
   avatar_url  String
   description String
   stars       Int
-  activity    Int
+  activity    Int?
   html_url    String
-  contributors Json
-  etag        String?
-  lastUpdated DateTime @default(now())
 }
 
 model Etag {
@@ -33,4 +30,10 @@ model Etag {
   href        String   @unique
   etag        String?
   lastUpdated DateTime @default(now())
+}
+
+model Contributors {
+  id            Int       @id @default(autoincrement())
+  repository_id Int       @unique
+  content       Json[]
 }
