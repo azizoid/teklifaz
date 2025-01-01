@@ -6,7 +6,7 @@ export interface GitHubRequest {
   fetchData: (etag?: string | null) => Promise<any>;
 }
 
-const getEtag = async (href: string): Promise<string | null> => {
+export const getEtag = async (href: string): Promise<string | null> => {
   const etagRecord = await prisma.etag.findUnique({
     where: { href },
   });
@@ -14,7 +14,7 @@ const getEtag = async (href: string): Promise<string | null> => {
   return etagRecord?.etag || null;
 };
 
-const upsertEtag = async (href: string, etag: string | null) => {
+export const upsertEtag = async (href: string, etag: string | null) => {
   const lastUpdated = new Date();
   await prisma.etag.upsert({
     where: { href },
