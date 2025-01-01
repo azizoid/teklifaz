@@ -1,5 +1,5 @@
 import { octokit } from "@/lib/octokit";
-import { fetchWithEtag, GitHubRequest } from "@/utils/getEtag";
+import { fetchWithEtag, GitHubRequest } from "@/utils/fetchWithEtag";
 import { RestEndpointMethodTypes } from "@octokit/rest";
 
 type GitHubRepositoryType = RestEndpointMethodTypes["repos"]["get"]["response"];
