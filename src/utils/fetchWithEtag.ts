@@ -14,7 +14,7 @@ export const getEtag = async (href: string): Promise<string | null> => {
   return etagRecord?.etag || null;
 };
 
-export const upsertEtag = async (href: string, etag: string | null) => {
+export const upsertEtag = async (href: string, etag?: string | null) => {
   const lastUpdated = new Date();
   await prisma.etag.upsert({
     where: { href },
