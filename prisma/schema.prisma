@@ -21,9 +21,19 @@ model Repository {
   avatar_url  String
   description String
   stars       Int
-  activity    Int
+  activity    Int?
   html_url    String
-  contributors Json
+}
+
+model Etag {
+  id          Int      @id @default(autoincrement())
+  href        String   @unique
   etag        String?
   lastUpdated DateTime @default(now())
+}
+
+model Contributors {
+  id            Int       @id @default(autoincrement())
+  repository_id Int       @unique
+  content       Json[]
 }

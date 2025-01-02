@@ -7,6 +7,6 @@ export const getOwnerRepoParam = async (ctx: {
   return {
     owner,
     repoName,
-    id: `${owner}/${repoName}`,
+    hash: `${owner}/${repoName}`,
   };
 };
