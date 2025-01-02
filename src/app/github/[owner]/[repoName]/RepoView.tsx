@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { FaStar, FaExternalLinkSquareAlt } from "react-icons/fa";
+import { Star, ExternalLinkIcon } from "lucide-react";
 
 import { Repository } from "@prisma/client";
 import { ContributorProps } from "@/lib/github.types";
@@ -25,7 +25,7 @@ export const RepoView = ({ repoData, contributors }: RepoViewProps) => (
         <p>Total Stars</p>
         <div className="flex items-center space-x-4">
           <h2 className="text-3xl font-semibold">{repoData.stars}</h2>
-          <FaStar size="24" />
+          <Star size="24" />
         </div>
       </div>
 
@@ -49,7 +49,7 @@ export const RepoView = ({ repoData, contributors }: RepoViewProps) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaExternalLinkSquareAlt /> {repoData.name}
+          <ExternalLinkIcon /> {repoData.name}
         </Link>
       </div>
 

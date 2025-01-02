@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { RepoCardProps } from "./Card.types";
-import { CiStar } from "react-icons/ci";
+import { StarIcon } from "lucide-react";
 
 export const MiniCard = ({ repo }: RepoCardProps) => (
   <Link
@@ -12,7 +12,7 @@ export const MiniCard = ({ repo }: RepoCardProps) => (
         {repo.owner}/<span className="font-bold">{repo.repo_name}</span>
       </h5>
       <div className="flex items-center space-x-1">
-        <CiStar size="16" />
+        <StarIcon size="16" />
         <span className="">{repo.stars}</span>
       </div>
     </div>
