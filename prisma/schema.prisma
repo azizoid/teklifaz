@@ -14,16 +14,16 @@ datasource db {
 }
 
 model Repository {
-  id          Int      @id @default(autoincrement())
-  name        String   @unique
-  repo_name   String 
-  owner       String
-  avatar_url  String
-  description String
-  stars       Int
-  activity    Int
-  html_url    String
-  contributors Json
-  etag        String?
-  lastUpdated DateTime @default(now())
+  id            Int      @id @default(autoincrement())
+  name          String   @unique
+  repo_name     String 
+  owner         String
+  avatar_url    String
+  description   String
+  stars         Int
+  activity      Int
+  html_url      String
+  contributors  Json
+  etag          String?
+  lastUpdated   DateTime @default(now())
 }
