@@ -4,8 +4,8 @@ import { Suspense } from "react";
 const Home = async () => {
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <article className="md:col-span-2 space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+        <article className="md:col-span-3 space-y-6">
           <section>
             <p className="leading-relaxed">
               <strong>Təklif.az</strong> – Azərbaycan texnoloji ekosistemini
@@ -56,7 +56,7 @@ const Home = async () => {
           </section>
         </article>
 
-        <aside className="md:col-span-1 space-y-4">
+        <aside className="md:col-span-2 space-y-4">
           <Suspense fallback={<div>Loading...</div>}>
             <Sidebar />
           </Suspense>

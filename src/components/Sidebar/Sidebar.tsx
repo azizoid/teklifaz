@@ -7,7 +7,7 @@ import { Repository } from "@prisma/client";
 
 export const Sidebar = () => {
   const { data: githubRepositories, error } = useSWR<Repository[]>(
-    "/api/github",
+    "/api/github/random",
     fetcher,
   );
 

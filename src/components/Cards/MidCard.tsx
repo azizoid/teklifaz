@@ -12,12 +12,15 @@ import { ActivityIcon, LinkIcon, StarIcon } from "lucide-react";
 export const MidCard = ({ repo }: RepoCardProps) => (
   <Card>
     <CardHeader className="p-4 pb-2 text-sm">
-      <CardTitle className="flex flex-row justify-between text-md">
-        {repo.name}
-        <Link href={`/github/${repo.name}`}>
+      <Link href={`/github/${repo.name}`}>
+        <CardTitle className="flex flex-row justify-between text-md">
+
+          {repo.name}
+
           <LinkIcon size={16} />
-        </Link>
-      </CardTitle>
+
+        </CardTitle>
+      </Link>
       <CardDescription>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua
