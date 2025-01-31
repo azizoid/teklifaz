@@ -1,8 +1,13 @@
 import fs from "fs";
 import path from "path";
 
-const projectsDir = path.join(process.cwd(), "data", "projects");
+const projectsDir = path.resolve(path.join(process.cwd(),"data", "projects"));
+if (!fs.existsSync(projectsDir)) {
+  fs.mkdirSync(projectsDir, { recursive: true });
+}
+
 const outputFile = path.join(process.cwd(), "data", "all_projects.json");
+
 
 const aggregateProjects = async () => {
   const developers = fs.readdirSync(projectsDir);
