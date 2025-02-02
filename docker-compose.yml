@@ -8,6 +8,9 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      - PORT=${PORT}
     env_file:
       - .env
     depends_on:

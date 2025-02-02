@@ -29,7 +29,6 @@ CMD ["pnpm", "run", "dev"]
 FROM base AS builder
 COPY . .
 RUN pnpm prisma generate
-RUN pnpm run generate:github
 RUN pnpm run build
 
 # Production stage

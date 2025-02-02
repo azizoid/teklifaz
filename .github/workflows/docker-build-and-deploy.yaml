@@ -7,6 +7,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions: # Add this
+      contents: read
+      packages: write
     
     steps:
     - uses: actions/checkout@v4
@@ -27,20 +30,25 @@ jobs:
         context: .
         push: true
         target: production
+        build-args: |
+          DATABASE_URL=${{ secrets.DATABASE_URL }}
+          PORT=${{ secrets.PORT }}
         tags: ghcr.io/${{ github.repository }}:latest
     
     - name: Deploy to Server
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
+        port: ${{ secrets.SSH_PORT }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           docker pull ghcr.io/${{ github.repository }}:latest
-          docker stop myapp || true
-          docker rm myapp || true
+          docker stop teklifaz || true
+          docker rm teklifaz || true
           docker run -d \
             --name teklifaz \
-            -p ${{ secrets.PORT }}:${{ secrets.PORT }} \
-            -e DATABASE_URL="postgresql://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@db:5432/${{ secrets.POSTGRES_DB }}" \
-              ghcr.io/${{ github.repository }}:latest
+            -e DATABASE_URL="${{ secrets.DATABASE_URL }}" \
+            -e PORT="${{ secrets.PORT }}" \
+            -p 127.0.0.1:${{ secrets.PORT }}:${{ secrets.PORT }} \
+            ghcr.io/${{ github.repository }}:latest
